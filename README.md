@@ -8,8 +8,8 @@ https://velog.io/@khchoo/230623Fri
 `둘다 body 사용했습니다`
 
 2. 어떤 상황에 어떤 방식의 request를 써야하나요?
-Client에서 게시글을 요청할 때에는 GET, 새로운 게시글 작성 시 POST, 
-`수정 시 PUT, 삭제 시 DELETE를 사용했습니다`
+`Client에서 게시글을 요청할 때에는 GET, 새로운 게시글 작성 시 POST, 
+수정 시 PUT, 삭제 시 DELETE를 사용했습니다`
 
 3. RESTful한 API를 설계했나요? 어떤 부분이 그런가요? 어떤 부분이 그렇지 않나요?
 `최대한 동일한 URL로 자원을 표기하고 HTTP Method를 통해 요청받고 조작하였습니다.`
