@@ -3,19 +3,18 @@ package com.sparta.posting.controller;
 import com.sparta.posting.dto.PostingRequestDto;
 import com.sparta.posting.dto.PostingResponseDto;
 import com.sparta.posting.service.PostingService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class PostingController {
 
     private final PostingService postingService;
 
-    public PostingController(PostingService postingService) {
-        this.postingService = postingService;
-    }
     @PostMapping("/postings")
     public PostingResponseDto createPosting(@RequestBody PostingRequestDto requestDto){
         return postingService.createPosting(requestDto);

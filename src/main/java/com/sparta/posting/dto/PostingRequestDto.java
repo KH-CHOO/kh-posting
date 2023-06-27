@@ -1,4 +1,5 @@
 package com.sparta.posting.dto;
+import com.sparta.posting.entity.Posting;
 import lombok.Getter;
 @Getter
 public class PostingRequestDto {
@@ -9,4 +10,13 @@ public class PostingRequestDto {
     private String username;
     private String password;
     private String contents;
+
+    public Posting toEntity() {
+        return Posting.builder()
+                .title(title)
+                .username(username)
+                .password(password)
+                .contents(contents)
+                .build();
+    }
 }

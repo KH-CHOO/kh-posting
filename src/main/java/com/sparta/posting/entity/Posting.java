@@ -2,6 +2,7 @@ package com.sparta.posting.entity;
 
 import com.sparta.posting.dto.PostingRequestDto;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import lombok.Setter;
 
 @Entity // JPA가 관리할 수 있는 Entity 클래스 지정
 @Getter
-@Setter // Setter는 조심해서 사용해야 함을 잊지 말것
+// @Setter // Setter는 조심해서 사용해야 함을 잊지 말것
 @Table(name = "posting") // 매핑할 테이블의 이름을 지정
 @NoArgsConstructor
 public class Posting extends Timestamped {
@@ -31,11 +32,19 @@ public class Posting extends Timestamped {
     @Column(name = "contents", nullable = false, length = 500)
     private String contents;
 
-    public Posting(PostingRequestDto requestDto){
-        this.title = requestDto.getTitle();
-        this.username = requestDto.getUsername();
-        this.password = requestDto.getPassword();
-        this.contents = requestDto.getContents();
+//    public Posting(PostingRequestDto requestDto){
+//        this.title = requestDto.getTitle();
+//        this.username = requestDto.getUsername();
+//        this.password = requestDto.getPassword();
+//        this.contents = requestDto.getContents();
+//    }
+
+    @Builder
+    public Posting(String title, String username, String password, String contents){
+        this.title = title;
+        this.username = username;
+        this.password = password;
+        this.contents = contents;
     }
 
     public void update(PostingRequestDto requestDto) {

@@ -4,24 +4,22 @@ import com.sparta.posting.dto.PostingRequestDto;
 import com.sparta.posting.dto.PostingResponseDto;
 import com.sparta.posting.entity.Posting;
 import com.sparta.posting.repository.PostingRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PostingService {
 
     private final PostingRepository postingRepository;
 
-    public PostingService(PostingRepository postingRepository) {
-        this.postingRepository = postingRepository;
-    }
     public PostingResponseDto createPosting(PostingRequestDto requestDto){
-        Posting posting = new Posting(requestDto);
-        Posting savePosting = postingRepository.save(posting);
-        PostingResponseDto postingResponseDto = new PostingResponseDto(posting);
-        return postingResponseDto;
+        Posting posting = requestDto.toEntity();
+        postingRepository.save(posting);
+        return new PostingResponseDto(posting);
     }
 
     public List<PostingResponseDto> getPostings(){
