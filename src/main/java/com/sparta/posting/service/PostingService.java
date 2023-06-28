@@ -29,18 +29,21 @@ public class PostingService {
         return postingRepository.findAllByOrderByCreatedAtDesc().stream().map(PostingResponseDto::new).toList();
     }
 
-    public List<PostingResponseDto> getPostingById(Long id){
-        return postingRepository.findAllById(id).stream().map(PostingResponseDto::new).toList();
-    }
+//    public List<PostingResponseDto> getPostingById(Long id){
+//        return postingRepository.findAllById(id).stream().map(PostingResponseDto::new).toList();
+//    }
     public PostingResponseDto getPostingById2(Long id){
-        Optional<Posting> optionalPosting = postingRepository.findById(id);
-        if (optionalPosting.isPresent()){
-            Posting posting = optionalPosting.get();
-            return new PostingResponseDto(posting);
-        }else {
-            // Handle the case when no posting is found with the given id
-            throw new IllegalArgumentException("일치하는 id가 없습니다");
-        }
+        Posting optional = postingRepository.findById(id).orElseThrow(()->new IllegalArgumentException("id 없음"));
+        // Optional은 값이 없을때도 처리해 줘야 한다.
+//        Optional<Posting> optionalPosting = postingRepository.findById(id);
+//        if (optionalPosting.isPresent()){
+//            Posting posting = optionalPosting.get();
+//            return new PostingResponseDto(posting);
+//        }else {
+//            // Handle the case when no posting is found with the given id
+//            throw new IllegalArgumentException("일치하는 id가 없습니다");
+//        }
+        return new PostingResponseDto(postingRepository.findById(id).orElseThrow(()->new IllegalArgumentException("id 없음")));
 
     }
 
@@ -54,14 +57,14 @@ public class PostingService {
 
     }
 
-    public Long deletePosting(Long id,PostingRequestDto requestDto) {
+    public PostingResponseDto deletePosting(Long id,PostingRequestDto requestDto) {
         // 비밀번호 검사
         Posting posting = checkPosting(id, requestDto.getPassword());
 
         // posting 삭제
         postingRepository.delete(posting);
-        // id가 리턴되면 삭제되었다는 뜻
-        return id;
+
+        return new PostingResponseDto(true);
     }
 
     private Posting checkPosting(Long id, String password){

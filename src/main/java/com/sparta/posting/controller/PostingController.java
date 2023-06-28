@@ -34,8 +34,8 @@ public class PostingController {
         return postingService.updatePosting(id, requestDto);
     }
     @DeleteMapping("/postings/{id}")
-    public String deletePosting(@PathVariable Long id,
+    public PostingResponseDto deletePosting(@PathVariable Long id,
                               @RequestBody PostingRequestDto requestDto){
-        return "id" + postingService.deletePosting(id, requestDto) + " deleted";
+        return postingService.deletePosting(id, requestDto);
     }
 }
