@@ -5,6 +5,8 @@ usecase & api명세서
 
 https://velog.io/@khchoo/230623Fri
 
+https://parallel-lightning-940.notion.site/Spring-Lv1-API-44777fca6c0849fa9abf436befe7425c
+
 1. 수정, 삭제 API의 request를 어떤 방식으로 사용하셨나요? (param, query, body)
 - param(@PathVariable)에서 id를 가져오고, body(@RequestBody)에서 비밀번호를 가져왔습니다.
 
