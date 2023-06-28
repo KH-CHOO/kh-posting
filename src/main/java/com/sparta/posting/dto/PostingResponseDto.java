@@ -3,6 +3,8 @@ import com.sparta.posting.entity.Posting;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Getter
 public class PostingResponseDto {
     // 조회
@@ -21,4 +23,6 @@ public class PostingResponseDto {
         this.createdAt = posting.getCreatedAt();
 
     }
+
+
 }

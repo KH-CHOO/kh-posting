@@ -24,8 +24,8 @@ public class PostingController {
         return postingService.getPostings();
     }
     @GetMapping("/postings/{id}")
-    public PostingResponseDto getPostingById(@PathVariable Long id){
-        return postingService.getPostingById(id).get(0);
+    public PostingResponseDto getPostingById2(@PathVariable Long id){
+        return postingService.getPostingById2(id);
     }
 
     @PutMapping("/postings/{id}")
@@ -34,8 +34,8 @@ public class PostingController {
         return postingService.updatePosting(id, requestDto);
     }
     @DeleteMapping("/postings/{id}")
-    public Long deletePosting(@PathVariable Long id,
+    public String deletePosting(@PathVariable Long id,
                               @RequestBody PostingRequestDto requestDto){
-        return postingService.deletePosting(id, requestDto);
+        return "id" + postingService.deletePosting(id, requestDto) + " deleted";
     }
 }

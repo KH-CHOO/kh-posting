@@ -5,10 +5,13 @@ import com.sparta.posting.dto.PostingResponseDto;
 import com.sparta.posting.entity.Posting;
 import com.sparta.posting.repository.PostingRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +32,17 @@ public class PostingService {
     public List<PostingResponseDto> getPostingById(Long id){
         return postingRepository.findAllById(id).stream().map(PostingResponseDto::new).toList();
     }
+    public PostingResponseDto getPostingById2(Long id){
+        Optional<Posting> optionalPosting = postingRepository.findById(id);
+        if (optionalPosting.isPresent()){
+            Posting posting = optionalPosting.get();
+            return new PostingResponseDto(posting);
+        }else {
+            // Handle the case when no posting is found with the given id
+            throw new IllegalArgumentException("일치하는 id가 없습니다");
+        }
+
+    }
 
     @Transactional
     public PostingResponseDto updatePosting(Long id, PostingRequestDto requestDto) {
@@ -36,8 +50,7 @@ public class PostingService {
         Posting posting = checkPosting(id, requestDto.getPassword());
         // posting 내용 수정
         posting.update(requestDto);
-        PostingResponseDto postingResponseDto = new PostingResponseDto(posting);
-        return postingResponseDto;
+        return new PostingResponseDto(posting);
 
     }
 
