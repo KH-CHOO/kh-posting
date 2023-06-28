@@ -13,7 +13,7 @@ https://velog.io/@khchoo/230623Fri
 	- https://medium.com/@LadyNoBug/api-design-f37bb37acf13
     
 	- path param : resource를 특정
-    	- 예: GET ->`/api/posting/{id}`
+    	- 예: GET ->`/api/postings/{id}`
     - query : resource에 대한 추가 정보
     	- 예: GET ->`/api/postings?page=2`
     - body : 게시글 내용과 같은 큰 내용
