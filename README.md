@@ -18,6 +18,7 @@ https://velog.io/@khchoo/230623Fri
     	- 예: GET ->`/api/postings?page=2`
     - body : 게시글 내용과 같은 큰 내용
     	- 예: POST -> JSON payload
+       
 3. RESTful한 API를 설계했나요? 어떤 부분이 그런가요? 어떤 부분이 그렇지 않나요?
 
 - `최대한 동일한 URL로 자원을 표기하고 HTTP Method를 통해 요청받고 조작하였습니다.`
